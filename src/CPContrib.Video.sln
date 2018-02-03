@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPContrib.Video", "CPContrib.Video\CPContrib.Video.csproj", "{B6487EB5-C9F2-4261-8950-1E2FE148BC42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPContrib.Video_Tests", "CPContrib.Video_Tests\CPContrib.Video_Tests.csproj", "{622E4856-24E9-40F8-8E4E-6F4AEF949A46}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0CA9FF63-B57A-428F-B390-261C1CE3F2FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B6487EB5-C9F2-4261-8950-1E2FE148BC42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6487EB5-C9F2-4261-8950-1E2FE148BC42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6487EB5-C9F2-4261-8950-1E2FE148BC42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6487EB5-C9F2-4261-8950-1E2FE148BC42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{622E4856-24E9-40F8-8E4E-6F4AEF949A46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{622E4856-24E9-40F8-8E4E-6F4AEF949A46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{622E4856-24E9-40F8-8E4E-6F4AEF949A46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{622E4856-24E9-40F8-8E4E-6F4AEF949A46}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{622E4856-24E9-40F8-8E4E-6F4AEF949A46} = {0CA9FF63-B57A-428F-B390-261C1CE3F2FB}
+	EndGlobalSection
+EndGlobal
