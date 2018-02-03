@@ -24,23 +24,19 @@ namespace CPContrib.Video
 
 			if((m = S_YoutubeLink.Match(value)).Success)
 			{
-				info = new VideoLinkInfo();
-				info.Company = Constants.YouTubeCompany;
-				return info;
+				return ParseYouTubeLink(m);
 			}
 
 			if((m = S_BrightcoveLink.Match(value)).Success)
 			{
 				VideoLinkInfo i = new VideoLinkInfo();
-				i.Company = Constants.YouTubeCompany;
+				i.Company = Constants.BrightcoveCompany;
 				return i;
 			}
 
 			throw new FormatException("Failed to parse the provider link");
 		}
 
-		private static Regex S_YoutubeLink = new Regex(@"http(s)?://(youtu.be|youtube.com)/");
-		private static Regex S_BrightcoveLink = new Regex(@"http(s)?://(vid.brightcove.com)/");
 		internal bool Is(string link, string company)
 		{
 			switch(company)
@@ -54,6 +50,51 @@ namespace CPContrib.Video
 			return false;
 		}
 
+		private VideoLinkInfo ParseYouTubeLink(Match m)
+		{
+			VideoLinkInfo info = new VideoLinkInfo();
+			info.Company = Constants.YouTubeCompany;
+			info.ProviderFactory = new SimpleVideoHtmlProviderFactory(Constants.YouTubeCompany);
+
+			info.VideoId = ParseYouTubeVideoId(m);
+			if(info.VideoId == null)
+				throw ExceptionHelper.FormatException("Failed to parse the provider link");
+
+			return info;
+		}
+
+		private string ParseYouTubeVideoId(Match m)
+		{
+			string absolutePath = m.Groups[4].Value;
+
+			if(m.Groups[3].Value == "youtu.be")
+			{
+				return absolutePath;
+			}
+
+			if(absolutePath.StartsWith("v/"))
+			{
+				return absolutePath.Substring(2);
+			}
+
+			if(absolutePath.StartsWith("embed/"))
+			{
+				return absolutePath.Substring(6);
+			}
+
+			if(absolutePath.StartsWith("watch"))
+			{
+				//parse querystring
+				string querystring = m.Groups[5].Value;
+				var parsed = System.Web.HttpUtility.ParseQueryString(querystring);
+				return parsed["v"];
+			}
+
+			return null;
+		}
+
+		private static Regex S_YoutubeLink = new Regex(@"(http|https)://(www\.)?(youtu.be|youtube.com)/([^?]*)(\?.*)?");
+		private static Regex S_BrightcoveLink = new Regex(@"http(s)?://(vid.brightcove.com)/(.*)");
 
 	}
 
