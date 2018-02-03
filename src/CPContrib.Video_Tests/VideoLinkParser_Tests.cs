@@ -38,6 +38,20 @@ namespace CPContrib.Video_Tests
 			Assert.That(actual.Company, Is.EqualTo(Constants.YouTubeCompany));
 		}
 
+		[Test]
+		[TestCaseSource("GetYouTubeVideoLinks")]
+		public void YouTube_Is_recognized(string value)
+		{
+			//arrange
+			var parser = new VideoLinkParser();
+
+			//act
+			var actual = parser.Is(value, Constants.YouTubeCompany);
+
+			//assert
+			Assert.That(actual, Is.True);
+		}
+
 
 		public static string[] GetYouTubeVideoLinks()
 		{

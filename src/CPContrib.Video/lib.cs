@@ -41,6 +41,19 @@ namespace CPContrib.Video
 
 		private static Regex S_YoutubeLink = new Regex(@"http(s)?://(youtu.be|youtube.com)/");
 		private static Regex S_BrightcoveLink = new Regex(@"http(s)?://(vid.brightcove.com)/");
+		internal bool Is(string link, string company)
+		{
+			switch(company)
+			{
+				case Constants.YouTubeCompany:
+					return S_YoutubeLink.Match(link).Success;
+				case Constants.BrightcoveCompany:
+					return S_BrightcoveLink.Match(link).Success;
+			}
+
+			return false;
+		}
+
 
 	}
 
