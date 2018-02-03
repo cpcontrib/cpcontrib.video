@@ -52,6 +52,20 @@ namespace CPContrib.Video_Tests
 			Assert.That(actual, Is.True);
 		}
 
+		[Test]
+		[TestCaseSource("GetYouTubeVideoLinks")]
+		public void YouTube_Parsed_Correctly(string value)
+		{
+			//arrange
+			const string expected_videoId = "VIDEO_IDENTIFIER";
+			var parser = new VideoLinkParser();
+
+			//act
+			var actual = parser.ParseLink(value);
+
+			//assert
+			Assert.That(actual.VideoId, Is.EqualTo(expected_videoId));
+		}
 
 		public static string[] GetYouTubeVideoLinks()
 		{
