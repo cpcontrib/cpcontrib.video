@@ -34,7 +34,7 @@ namespace CPContrib.Video
 				return i;
 			}
 
-			throw new FormatException("Failed to parse the provider link");
+			throw ExceptionHelper.FormatException("Failed to parse the provider link");
 		}
 
 		internal bool Is(string link, string company)
@@ -142,7 +142,7 @@ namespace CPContrib.Video.Core
 	{
 		IVideoHtml CreateProvider();
 	}
-	public class SimpleVideoHtmlProviderFactory
+	public class SimpleVideoHtmlProviderFactory : IVideoHtmlFactory
 	{
 		public SimpleVideoHtmlProviderFactory(string company)
 		{
@@ -175,5 +175,11 @@ namespace CPContrib.Video.Core
 
 	}
 
-
+	internal class ExceptionHelper
+	{
+		public static FormatException FormatException(string resourceId, Exception inner = null)
+		{
+			return new System.FormatException(resourceId, inner);
+		}
+	}
 }
