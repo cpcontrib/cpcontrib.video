@@ -6,9 +6,20 @@ Library currently is broken down into parts:
 - tools to help render the video player for each service provider
 - future: tools to interact with the service provider to obtain optimal video thumbnails/sizing
 
-Currently supports
-- YouTube
-- Brightcove
+Video services supported: YouTube, Brightcove
+
+# Quick Start
+
+```c#
+//post_save.aspx
+  using CPContrib.Video;
+  var videoService = new VideoService()
+  var videoInfo = videoService.CreateParser().ParseLink(asset.Raw["provider_link"]);
+  asset.SaveContentFields(videoService.new Dictionary<string,string> { { "provider", videoInfo.Company }, { "videoId", videoInfo.VideoId } });
+//output.aspx
+  var videoHtml = new VideoService().CreateVideoHtml(asset.Raw["provider"]);
+  Out.Write(videoHtml.GetEmbed(
+```
 
 More integrations are desired and welcome: Vimeo, etc.
 
